@@ -15,6 +15,13 @@
       "when": 1764632770602,
       "tag": "0001_curvy_talkback",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1764646538810,
+      "tag": "0002_workable_paper_doll",
+      "breakpoints": true
     }
   ]
 }

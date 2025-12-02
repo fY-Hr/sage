@@ -1,4 +1,5 @@
 import { sql } from 'drizzle-orm';
+import { uniqueIndex } from 'drizzle-orm/pg-core';
 import { 
     pgTable,
     uuid,
@@ -19,8 +20,10 @@ export const usersTable = pgTable(
         updated_at: timestamp('created_at').defaultNow().notNull(),
     },
 
-    (table) => [
-        check("usernameLength", sql`LENGTH(${table.username}) >= 3`),
-    ]
+    (table) => ({
+        emailIdx: uniqueIndex('email_idx').on(table.email),
+        usernameIdx: uniqueIndex('username_idx').on(table.username),
+        usernameLength: check('usernameLength', sql `LENGTH(${table.username}) >= 3`)
+    })
 )
 

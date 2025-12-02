@@ -5,3 +5,5 @@ export const errorResponseSchema = z.object({
         example: 'This email is already registered'
     })
 })
+
+export type ErrorResponse = z.infer<typeof errorResponseSchema>;

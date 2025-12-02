@@ -7,6 +7,7 @@
     "db:studio": "drizzle-kit studio"
   },
   "dependencies": {
+    "@hono/swagger-ui": "^0.5.2",
     "@hono/zod-openapi": "^1.1.5",
     "@node-rs/argon2": "^2.0.2",
     "drizzle-orm": "^0.44.7",

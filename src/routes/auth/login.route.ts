@@ -4,7 +4,7 @@ import { errorResponseSchema } from '../../schemas/shared/error.schema';
 
 export const loginRoute = createRoute({
     method: 'post',
-    path: '/auth/login',
+    path: '/login',
     request: {
         body: {
             content: {

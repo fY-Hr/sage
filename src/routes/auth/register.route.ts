@@ -4,7 +4,7 @@ import { errorResponseSchema } from '../../schemas/shared/error.schema';
 
 export const registerRoute = createRoute({
     method: 'post',
-    path: '/auth/register',
+    path: '/register',
     request: {
         body: {
             content: {

@@ -2,9 +2,10 @@ import { Context, InferRequestType } from 'hono';
 import { register as registerService } from '../../services/auth.service';
 import { RegisterInput } from '../../schemas/auth/register.schema';
 import { registerRoute } from '../../routes/auth/register.route';
+import { AppEnv } from '../../types/hono';
 
 type RegisterContext = Context<
-    {},
+    AppEnv,
     typeof registerRoute extends { path: string } ? typeof registerRoute.path : '/',
     InferRequestType<typeof registerRoute>
 >

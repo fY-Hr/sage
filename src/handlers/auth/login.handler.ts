@@ -2,9 +2,10 @@ import { Context, InferRequestType } from 'hono';
 import { login as loginService } from '../../services/auth.service';
 import { LoginInput } from '../../schemas/auth/login.schema';
 import { loginRoute } from '../../routes/auth/login.route';
+import { AppEnv } from '../../types/hono';
 
 type LoginContext = Context<
-    {}, // Env (Kosongkan atau berikan tipe Env Anda yang sebenarnya)
+    AppEnv, // Env (Kosongkan atau berikan tipe Env Anda yang sebenarnya)
     typeof loginRoute extends { path: string } ? typeof loginRoute.path : "/",
     InferRequestType<typeof loginRoute>
 >;

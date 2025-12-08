@@ -3,10 +3,10 @@ import { db } from '../db/db';
 import { usersTable } from '../db/schema';
 import { blacklistTokensTable } from '../db/schema/blacklistTokensTable';
 import { hash, verify } from '@node-rs/argon2';
-import { RegisterInput } from '../schemas/auth/register.schema';
-import { LoginInput } from '../schemas/auth/login.schema';
+import { LoginInput, RegisterInput } from '../schemas/auth';
 import { SignJWT } from 'jose';
 import { randomUUIDv7 } from 'bun';
+import { LogoutSuccess, logoutSuccessSchema } from '../schemas/auth/logout.schema';
 
 async function generateToken(userId: string): Promise<string>{
     const jwtSecret = process.env.JWT_SECRET;
@@ -73,10 +73,17 @@ export async function login(input: LoginInput){
 
 export async function logout(jti: string, exp: Date){   
     try{
-        await db.insert(blacklistTokensTable).values({
+        const res = await db.insert(blacklistTokensTable).values({
             jti: jti,
             expired_at: exp
         })
+
+        if(res){
+            const message: LogoutSuccess = {message: 'Logout successful'}
+            return message
+        } else {
+            throw new Error()
+        }
     } catch (error){
         console.error('Error revoking token: ' + error);
         throw new Error('Failed to log out session');

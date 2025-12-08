@@ -5,7 +5,7 @@ import { loginRoute } from '../../routes/auth/login.route';
 import { AppEnv } from '../../types/hono';
 
 type LoginContext = Context<
-    AppEnv, // Env (Kosongkan atau berikan tipe Env Anda yang sebenarnya)
+    AppEnv,
     typeof loginRoute extends { path: string } ? typeof loginRoute.path : "/",
     InferRequestType<typeof loginRoute>
 >;

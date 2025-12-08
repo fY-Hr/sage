@@ -13,7 +13,7 @@ export const messagesTable = pgTable(
     {
         id: uuid('id').primaryKey().defaultRandom().notNull(),
         conversation_id: uuid('id').notNull().references(() => conversationsTable.id, { onDelete: 'cascade'}),
-        sender_id: uuid('id').notNull().references(() => usersTable.id, { onDelete: 'set null'}),
+        sender_id: uuid('sender_id').notNull().references(() => usersTable.id, { onDelete: 'set null'}),
         content: varchar('content', {length: 2000}),
         created_at: timestamp('created_at').defaultNow().notNull(),
         updated_at: timestamp('updated_at').defaultNow().notNull()

@@ -54,6 +54,8 @@ export const jwtMiddleware = () => {
             // Plus, we can use the Variables inteface inside the Context env generic params in the handler, so when the handler is trying to get
             // the c.get('auth') the type is already the same.
 
+            await next()
+
         } catch (error){
             return c.json({message: 'Unauthorized, invalid or expired token'}, 401);
         }

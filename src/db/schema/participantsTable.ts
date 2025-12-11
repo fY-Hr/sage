@@ -1,6 +1,7 @@
 import {
     pgTable,
     uuid,
+    boolean,
     primaryKey,
     timestamp,
     index
@@ -14,6 +15,7 @@ export const participantsTable = pgTable(
         conversation_id: uuid('conversation_id').notNull().references(() => conversationsTable.id),
         user_id: uuid('user_id').notNull().references(() => usersTable.id),
         deleted_since: timestamp('deleted_since'), // For soft delete feature
+        is_visible: boolean('is_visible').default(false),
         created_at: timestamp('created_at').defaultNow().notNull(),
         updated_at: timestamp('updated_at').defaultNow().notNull()
     },

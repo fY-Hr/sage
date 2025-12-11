@@ -1,0 +1,1 @@
+ALTER TABLE "participants" ADD COLUMN "is_visible" boolean DEFAULT false;
